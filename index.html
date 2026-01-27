@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Restaurant Menu</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <h1>AR Restaurant Menu</h1>
+        <div class="logo-container">
+            <img src="logo.png" alt="Restaurant Logo" class="logo">
+        </div>
+        <h2>Restaurant Name</h2>
+    </header>
+
+    <nav class="categories">
+        <button>Burgers</button>
+        <button>Pizza</button>
+        <button>Drinks</button>
+    </nav>
+
+    <main>
+        <section class="viewer-section">
+            <h3>3D Viewer</h3>
+            <model-viewer id="menu-model" src="burger.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls poster="poster.webp" shadow-intensity="1" auto-rotate>
+                <button slot="ar-button" class="ar-button">View in your space</button>
+            </model-viewer>
+        </section>
+
+        <section class="item-info">
+            <h3 id="item-name">Classic Burger</h3>
+            <p id="item-description">A juicy beef patty with fresh lettuce and cheese.</p>
+            <p class="price">$5.99</p>
+            
+            <div class="actions">
+                <button class="btn-primary">Order Now</button>
+                <button class="btn-secondary">Reset View</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Scan. Choose. View in AR.</p>
+    </footer>
+
+</body>
+</html>

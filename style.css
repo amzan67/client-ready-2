@@ -1,0 +1,93 @@
+/* Basic Reset */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fcfcfc;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+header {
+    margin-top: 20px;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #ddd; /* Fallback color */
+    margin-bottom: 10px;
+}
+
+/* Category Buttons */
+.categories {
+    margin: 20px 0;
+}
+
+.categories button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.categories button:hover {
+    background-color: #ff4757;
+    color: white;
+    border-color: #ff4757;
+}
+
+/* 3D Viewer Styling */
+model-viewer {
+    width: 90vw;
+    height: 400px;
+    max-width: 600px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin: 0 auto;
+}
+
+/* Item Info */
+.item-info {
+    margin-top: 20px;
+    padding: 0 20px;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2ed573;
+}
+
+.btn-primary {
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background: none;
+    border: 1px solid #777;
+    padding: 12px 30px;
+    border-radius: 8px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+footer {
+    margin: 40px 0;
+    font-style: italic;
+    color: #777;
+}
