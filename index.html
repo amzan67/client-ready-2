@@ -62,5 +62,13 @@ pizzaBtn.onclick = () => {
   viewer.src = "pizza.glb";
   viewer.poster = "pizza-poster.webp";
 };
+<model-viewer id="menu-viewer" src="burger.glb" ar camera-controls></model-viewer>
+
+<button onclick="changeItem('burger.glb', 'Classic Burger', '$5.99')">Burgers</button>
+<button onclick="changeItem('pizza.glb', 'Pepperoni Pizza', '$12.99')">Pizza</button>
+<button onclick="changeItem('drinks.glb', 'Cold Soda', '$1.99')">Drinks</button>
+
+<h2 id="item-name">Classic Burger</h2>
+<p id="item-price">$5.99</p>
 </body>
 </html>
