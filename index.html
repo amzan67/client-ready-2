@@ -46,6 +46,21 @@
     <footer>
         <p>Scan. Choose. View in AR.</p>
     </footer>
+// 1. Select the 3D viewer and the buttons
+const viewer = document.querySelector("model-viewer");
+const burgerBtn = document.getElementById("burger-btn");
+const pizzaBtn = document.getElementById("pizza-btn");
 
+// 2. Add "Click" instructions for the Burger button
+burgerBtn.onclick = () => {
+  viewer.src = "burger.glb";
+  viewer.poster = "burger-poster.webp"; // Optional: change the loading image too
+};
+
+// 3. Add "Click" instructions for the Pizza button
+pizzaBtn.onclick = () => {
+  viewer.src = "pizza.glb";
+  viewer.poster = "pizza-poster.webp";
+};
 </body>
 </html>
