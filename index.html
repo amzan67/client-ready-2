@@ -71,27 +71,27 @@ pizzaBtn.onclick = () => {
 <h2 id="item-name">Classic Burger</h2>
 <p id="item-price">$5.99</p>
 <script>
-      // This tells the browser: "Find the 3D viewer"
-      const viewer = document.querySelector("model-viewer");
-      
-      // When the Burger button is clicked...
-      document.getElementById("btn-burger").onclick = () => {
-        viewer.src = "burger.glb"; 
-        document.querySelector("h2").innerText = "Classic Burger";
-      };
+  const viewer = document.getElementById("menu-viewer");
 
-      // When the Pizza button is clicked...
-      document.getElementById("btn-pizza").onclick = () => {
-        viewer.src = "pizza.glb"; 
-        document.querySelector("h2").innerText = "Pepperoni Pizza";
-      };
+  function changeItem(modelFile, title) {
+    // 1. Hide the old model briefly to prevent freezing
+    viewer.src = ""; 
+    
+    // 2. Set the new model
+    // Note: Make sure 'pizza.glb' is uploaded to your GitHub!
+    viewer.src = modelFile; 
+    
+    // 3. Update the text on screen
+    document.querySelector("h2").innerText = title;
+    
+    console.log("Attempting to load: " + modelFile);
+  }
 
-      // When the Drinks button is clicked...
-      document.getElementById("btn-drinks").onclick = () => {
-        viewer.src = "drinks.glb"; 
-        document.querySelector("h2").innerText = "Refreshing Drink";
-      };
-    </script>
+  // Assign functions to buttons
+  document.getElementById("btn-burger").onclick = () => changeItem("burger.glb", "Classic Burger");
+  document.getElementById("btn-pizza").onclick = () => changeItem("pizza.glb", "Pepperoni Pizza");
+  document.getElementById("btn-drinks").onclick = () => changeItem("drinks.glb", "Refreshing Drink");
+</script>
 
   </body> </html>
 </body>
