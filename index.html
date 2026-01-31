@@ -37,24 +37,29 @@
     <button onclick="document.getElementById('main-viewer').cameraOrbit = '0deg 75deg auto'">Reset View</button>
 
     <script>
-        function updateMenu(modelFile, name, description, price) {
-            // 1. Get the elements
-            const viewer = document.getElementById('main-viewer');
-            const nameElement = document.getElementById('item-name');
-            const descElement = document.getElementById('item-description');
-            const priceElement = document.getElementById('item-price');
+  function updateMenu(modelFile, name, description, price) {
+    const viewer = document.getElementById('main-viewer');
+    const nameElement = document.getElementById('item-name');
+    const descElement = document.getElementById('item-description');
+    const priceElement = document.getElementById('item-price');
 
-            // 2. Update the 3D Model
-            viewer.src = modelFile;
+    // This part forces the viewer to refresh the source
+    viewer.setAttribute('src', modelFile);
+    
+    // Update the text
+    nameElement.innerText = name;
+    descElement.innerText = description;
+    priceElement.innerText = price;
 
-            // 3. Update all the text
-            nameElement.innerText = name;
-            descElement.innerText = description;
-            priceElement.innerText = price;
+    console.log("Switching to: " + modelFile);
 
-            console.log("Switched to: " + name);
-        }
-    </script>
+    // Error listener: If the model fails to load, this will alert you
+    viewer.addEventListener('error', (error) => {
+      console.error("Error loading 3D model: " + modelFile, error);
+    }, { once: true });
+  }
+</script>
 
 </body>
+
 </html>
