@@ -17,11 +17,11 @@
         <h2>Restaurant Name</h2>
     </header>
 
-    <nav class="categories">
-        <button>Burgers</button>
-        <button>Pizza</button>
-        <button>Drinks</button>
-    </nav>
+<div class="button-container">
+  <button id="btn-burger">Burgers</button>
+  <button id="btn-pizza">Pizza</button>
+  <button id="btn-drinks">Drinks</button>
+</div>
 
     <main>
         <section class="viewer-section">
@@ -70,5 +70,29 @@ pizzaBtn.onclick = () => {
 
 <h2 id="item-name">Classic Burger</h2>
 <p id="item-price">$5.99</p>
+<script>
+      // This tells the browser: "Find the 3D viewer"
+      const viewer = document.querySelector("model-viewer");
+      
+      // When the Burger button is clicked...
+      document.getElementById("btn-burger").onclick = () => {
+        viewer.src = "burger.glb"; 
+        document.querySelector("h2").innerText = "Classic Burger";
+      };
+
+      // When the Pizza button is clicked...
+      document.getElementById("btn-pizza").onclick = () => {
+        viewer.src = "pizza.glb"; 
+        document.querySelector("h2").innerText = "Pepperoni Pizza";
+      };
+
+      // When the Drinks button is clicked...
+      document.getElementById("btn-drinks").onclick = () => {
+        viewer.src = "drinks.glb"; 
+        document.querySelector("h2").innerText = "Refreshing Drink";
+      };
+    </script>
+
+  </body> </html>
 </body>
 </html>
