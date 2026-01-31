@@ -4,101 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AR Restaurant Menu</title>
-    <link rel="stylesheet" href="style.css">
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 20px; background-color: #f9f9f9; }
+        model-viewer { width: 100%; height: 400px; background-color: #ffffff; border-radius: 15px; margin: 20px 0; }
+        .button-group { margin: 20px 0; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; border-radius: 20px; border: 1px solid #ccc; background: white; transition: 0.3s; }
+        button:hover { background: #eee; }
+        #item-price { color: #2ecc71; font-weight: bold; font-size: 1.5rem; }
+        .order-btn { background-color: #ff5e62; color: white; border: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; }
+    </style>
 </head>
 <body>
 
-    <header>
-        <h1>AR Restaurant Menu</h1>
-        <div class="logo-container">
-            <img src="logo.png" alt="Restaurant Logo" class="logo">
-        </div>
-        <h2>Restaurant Name</h2>
-    </header>
+    <h1>AR Restaurant Menu</h1>
+    <h2 id="restaurant-name">Restaurant Name</h2>
 
-<div class="button-container">
-  <button id="btn-burger">Burgers</button>
-  <button id="btn-pizza">Pizza</button>
-  <button id="btn-drinks">Drinks</button>
-</div>
+    <div class="button-group">
+        <button onclick="updateMenu('burger.glb', 'Classic Burger', 'A juicy beef patty with fresh lettuce and cheese.', '$5.99')">Burgers</button>
+        <button onclick="updateMenu('pizza.glb', 'Pepperoni Pizza', 'Freshly baked with spicy pepperoni and melted mozzarella.', '$12.99')">Pizza</button>
+        <button onclick="updateMenu('drinks.glb', 'Cold Soda', 'A refreshing, ice-cold bubbly drink.', '$1.99')">Drinks</button>
+    </div>
 
-    <main>
-        <section class="viewer-section">
-            <h3>3D Viewer</h3>
-            <model-viewer id="menu-model" src="burger.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls poster="poster.webp" shadow-intensity="1" auto-rotate>
-                <button slot="ar-button" class="ar-button">View in your space</button>
-            </model-viewer>
-        </section>
+    <h3>3D Viewer</h3>
+    <model-viewer id="main-viewer" src="burger.glb" ar camera-controls shadow-intensity="1" touch-action="pan-y"></model-viewer>
 
-        <section class="item-info">
-            <h2 id="item-name">Classic Burger</h2>
-            <p id="item-description">A juicy beef patty with fresh lettuce and cheese.</p>
-            <p id="item-price">$5.99</p>
-            <div class="actions">
-                <button class="btn-primary">Order Now</button>
-                <button class="btn-secondary">Reset View</button>
-            </div>
-        </section>
-    </main>
+    <h2 id="item-name">Classic Burger</h2>
+    <p id="item-description">A juicy beef patty with fresh lettuce and cheese.</p>
+    <p id="item-price">$5.99</p>
 
-    <footer>
-        <p>Scan. Choose. View in AR.</p>
-    </footer>
-// 1. Select the 3D viewer and the buttons
-const viewer = document.querySelector("model-viewer");
-const burgerBtn = document.getElementById("burger-btn");
-const pizzaBtn = document.getElementById("pizza-btn");
+    <button class="order-btn">Order Now</button>
+    <button onclick="document.getElementById('main-viewer').cameraOrbit = '0deg 75deg auto'">Reset View</button>
 
-// 2. Add "Click" instructions for the Burger button
-burgerBtn.onclick = () => {
-  viewer.src = "burger.glb";
-  viewer.poster = "burger-poster.webp"; // Optional: change the loading image too
-};
+    <script>
+        function updateMenu(modelFile, name, description, price) {
+            // 1. Get the elements
+            const viewer = document.getElementById('main-viewer');
+            const nameElement = document.getElementById('item-name');
+            const descElement = document.getElementById('item-description');
+            const priceElement = document.getElementById('item-price');
 
-// 3. Add "Click" instructions for the Pizza button
-pizzaBtn.onclick = () => {
-  viewer.src = "pizza.glb";
-  viewer.poster = "pizza-poster.webp";
-};
-<model-viewer id="menu-viewer" src="burger.glb" ar camera-controls></model-viewer>
+            // 2. Update the 3D Model
+            viewer.src = modelFile;
 
-<button onclick="changeItem('burger.glb', 'Classic Burger', '$5.99')">Burgers</button>
-<button onclick="changeItem('pizza.glb', 'Pepperoni Pizza', '$12.99')">Pizza</button>
-<button onclick="changeItem('drinks.glb', 'Cold Soda', '$1.99')">Drinks</button>
+            // 3. Update all the text
+            nameElement.innerText = name;
+            descElement.innerText = description;
+            priceElement.innerText = price;
 
-<h2 id="item-name">Classic Burger</h2>
-<p id="item-price">$5.99</p>
-<script>
-  const viewer = document.getElementById("menu-viewer");
-  const nameLabel = document.getElementById("item-name");
-  const priceLabel = document.getElementById("item-price");
-  const descLabel = document.getElementById("item-description");
+            console.log("Switched to: " + name);
+        }
+    </script>
 
-  function changeItem(modelFile, name, price, description) {
-    // Change the 3D model
-    viewer.src = modelFile;
-    
-    // Change the text labels
-    nameLabel.innerText = name;
-    priceLabel.innerText = price;
-    descLabel.innerText = description;
-  }
-
-  // Update your button clicks to include all the info
-  document.getElementById("btn-burger").onclick = () => {
-    changeItem("burger.glb", "Classic Burger", "$5.99", "A juicy beef patty with fresh lettuce and cheese.");
-  };
-
-  document.getElementById("btn-pizza").onclick = () => {
-    changeItem("pizza.glb", "Pepperoni Pizza", "$12.99", "Freshly baked with spicy pepperoni and melted mozzarella.");
-  };
-
-  document.getElementById("btn-drinks").onclick = () => {
-    changeItem("drinks.glb", "Cold Soda", "$1.99", "A refreshing, ice-cold bubbly drink.");
-  };
-</script>
-
-  </body> </html>
 </body>
 </html>
