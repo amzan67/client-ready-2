@@ -32,10 +32,9 @@
         </section>
 
         <section class="item-info">
-            <h3 id="item-name">Classic Burger</h3>
+            <h2 id="item-name">Classic Burger</h2>
             <p id="item-description">A juicy beef patty with fresh lettuce and cheese.</p>
-            <p class="price">$5.99</p>
-            
+            <p id="item-price">$5.99</p>
             <div class="actions">
                 <button class="btn-primary">Order Now</button>
                 <button class="btn-secondary">Reset View</button>
@@ -72,25 +71,32 @@ pizzaBtn.onclick = () => {
 <p id="item-price">$5.99</p>
 <script>
   const viewer = document.getElementById("menu-viewer");
+  const nameLabel = document.getElementById("item-name");
+  const priceLabel = document.getElementById("item-price");
+  const descLabel = document.getElementById("item-description");
 
-  function changeItem(modelFile, title) {
-    // 1. Hide the old model briefly to prevent freezing
-    viewer.src = ""; 
+  function changeItem(modelFile, name, price, description) {
+    // Change the 3D model
+    viewer.src = modelFile;
     
-    // 2. Set the new model
-    // Note: Make sure 'pizza.glb' is uploaded to your GitHub!
-    viewer.src = modelFile; 
-    
-    // 3. Update the text on screen
-    document.querySelector("h2").innerText = title;
-    
-    console.log("Attempting to load: " + modelFile);
+    // Change the text labels
+    nameLabel.innerText = name;
+    priceLabel.innerText = price;
+    descLabel.innerText = description;
   }
 
-  // Assign functions to buttons
-  document.getElementById("btn-burger").onclick = () => changeItem("burger.glb", "Classic Burger");
-  document.getElementById("btn-pizza").onclick = () => changeItem("pizza.glb", "Pepperoni Pizza");
-  document.getElementById("btn-drinks").onclick = () => changeItem("drinks.glb", "Refreshing Drink");
+  // Update your button clicks to include all the info
+  document.getElementById("btn-burger").onclick = () => {
+    changeItem("burger.glb", "Classic Burger", "$5.99", "A juicy beef patty with fresh lettuce and cheese.");
+  };
+
+  document.getElementById("btn-pizza").onclick = () => {
+    changeItem("pizza.glb", "Pepperoni Pizza", "$12.99", "Freshly baked with spicy pepperoni and melted mozzarella.");
+  };
+
+  document.getElementById("btn-drinks").onclick = () => {
+    changeItem("drinks.glb", "Cold Soda", "$1.99", "A refreshing, ice-cold bubbly drink.");
+  };
 </script>
 
   </body> </html>
