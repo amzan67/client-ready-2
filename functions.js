@@ -1,6 +1,6 @@
 Load Burger Model
 Load Pizza Model
-Load Drink Model
+
 Update Item Info
 Handle AR Launch
 Safe Model Switching
@@ -20,4 +20,5 @@ function updateMenu(modelFile, name, description, price) {
     }, 50); 
 
     console.log("Switching model to: " + modelFile);
+
 }
